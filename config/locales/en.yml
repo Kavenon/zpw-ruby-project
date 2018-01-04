@@ -30,4 +30,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  app: "ticketpro"
+  user:
+    new:
+      title: "Create account"
+  auth:
+    login:
+      title: "Login to ticketpro"
+      msg: "Don't have an account? Sign up now!"
+      register: "Register"
+  helpers:
+    submit:
+      auth:
+        submit: "Log in"
+    placeholder:
+      auth:
+        email: "Email"
+        password: "Password"
   hello: "Hello world"

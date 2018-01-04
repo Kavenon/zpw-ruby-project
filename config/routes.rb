@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  get 'auth/new'
+
+  resources :users
   resources :tickets
   root :to => "tickets#index"
+
+  get    '/signup',  to: 'users#new'
+  get    '/login',   to: 'auth#new'
+  post   '/login',   to: 'auth#create'
+  delete '/logout',  to: 'auth#destroy'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
