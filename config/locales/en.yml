@@ -39,6 +39,7 @@ en:
       title: "Login to ticketpro"
       msg: "Don't have an account? Sign up now!"
       register: "Register"
+      incorrect: "Incorrect credentials"
   helpers:
     submit:
       auth:

@@ -12,4 +12,24 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  */
+
+#toast-container > * {
+    box-shadow:none !important;
+}
+.toast {
+    background-color: #78a614;
+}
+.toast-success {
+    background-color: #78a614;
+}
+.toast-error {
+    background-color: #ed5565;
+}
+.toast-info {
+    background-color: #23c6c8;
+}
+.toast-warning {
+    background-color: #f8ac59;
+}
