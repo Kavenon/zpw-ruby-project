@@ -1,0 +1,77 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date, id: :event_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :datetime, %>
+    <%= form.text_field :datetime,, id: :event_datetime, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :required_age %>
+    <%= form.text_field :required_age, id: :event_required_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer, %>
+    <%= form.text_field :integer,, id: :event_integer, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :event_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string, %>
+    <%= form.text_field :string,, id: :event_string, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :desc %>
+    <%= form.text_field :desc, id: :event_desc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string, %>
+    <%= form.text_field :string,, id: :event_string, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :event_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decimal, %>
+    <%= form.text_field :decimal,, id: :event_decimal, %>
+  </div>
+
+  <div class="field">
+    <%= form.label :free_seats %>
+    <%= form.text_field :free_seats, id: :event_free_seats %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer %>
+    <%= form.text_field :integer, id: :event_integer %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

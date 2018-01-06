@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  datetime,: MyString
+  required_age: MyString
+  integer,: MyString
+  name: MyString
+  string,: MyString
+  desc: MyString
+  string,: MyString
+  price: MyString
+  decimal,: MyString
+  free_seats: MyString
+  integer: MyString
+
+two:
+  date: MyString
+  datetime,: MyString
+  required_age: MyString
+  integer,: MyString
+  name: MyString
+  string,: MyString
+  desc: MyString
+  string,: MyString
+  price: MyString
+  decimal,: MyString
+  free_seats: MyString
+  integer: MyString

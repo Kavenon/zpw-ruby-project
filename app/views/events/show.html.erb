@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<p>
+  <strong>Datetime,:</strong>
+  <%= @event.datetime, %>
+</p>
+
+<p>
+  <strong>Required age:</strong>
+  <%= @event.required_age %>
+</p>
+
+<p>
+  <strong>Integer,:</strong>
+  <%= @event.integer, %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>String,:</strong>
+  <%= @event.string, %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @event.desc %>
+</p>
+
+<p>
+  <strong>String,:</strong>
+  <%= @event.string, %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event.price %>
+</p>
+
+<p>
+  <strong>Decimal,:</strong>
+  <%= @event.decimal, %>
+</p>
+
+<p>
+  <strong>Free seats:</strong>
+  <%= @event.free_seats %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @event.integer %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

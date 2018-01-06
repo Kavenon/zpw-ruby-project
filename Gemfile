@@ -9,6 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'bcrypt', '3.1.11'
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 gem 'toastr-rails'
 gem 'jquery-rails'
 gem 'validates_timeliness', '~> 4.0'
