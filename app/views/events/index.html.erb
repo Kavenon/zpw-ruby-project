@@ -1,49 +1,37 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Datetime,</th>
-      <th>Required age</th>
-      <th>Integer,</th>
-      <th>Name</th>
-      <th>String,</th>
-      <th>Desc</th>
-      <th>String,</th>
-      <th>Price</th>
-      <th>Decimal,</th>
-      <th>Free seats</th>
-      <th>Integer</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row row-eq-height">
+  <div class="col-lg-3">
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.date %></td>
-        <td><%= event.datetime, %></td>
-        <td><%= event.required_age %></td>
-        <td><%= event.integer, %></td>
-        <td><%= event.name %></td>
-        <td><%= event.string, %></td>
-        <td><%= event.desc %></td>
-        <td><%= event.string, %></td>
-        <td><%= event.price %></td>
-        <td><%= event.decimal, %></td>
-        <td><%= event.free_seats %></td>
-        <td><%= event.integer %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <section class="widget user-profile">
+      <div class="widget-body">
+        <div class="widget-top-overflow text-white">
+          <div class="height-250 overflow-hidden">
+            <%= image_tag event.poster.url, class: "img-fluid" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-xs-center">
+            <div class="post-user mt-lg">
+              <h5 class="fw-normal"><%= event.name %></h5>
+              <p>
+                <%= event.desc %>
+              </p>
+              <span class="label label-danger">
+                <%= event.price %>zł
+              </span>
+              <div class="mt-lg mb-lg">
+                <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
+              </div>
+
+              <%= link_to 'Show', event, class: "btn btn-success" %>
+              <%= link_to 'Edit', edit_event_path(event), class: "btn btn-warning" %>
+              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<br>
-
-<%= link_to 'New Event', new_event_path %>

@@ -1,4 +1,4 @@
-<%= form_with(model: event, local: true) do |form| %>
+<%= form_with(model: event, local: true, html: { multipart: true },  class: "form-horizontal") do |form| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,67 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.text_field :date, id: :event_date %>
+  <div class="form-group-first-child display-flex mb-lg">
+    <%= form.datetime_select :date, id: :event_date, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :datetime, %>
-    <%= form.text_field :datetime,, id: :event_datetime, %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :required_age %>
-    <%= form.text_field :required_age, id: :event_required_age %>
+    <%= form.text_field :required_age, id: :event_required_age, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :integer, %>
-    <%= form.text_field :integer,, id: :event_integer, %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :event_name %>
+    <%= form.text_field :name, id: :event_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :string, %>
-    <%= form.text_field :string,, id: :event_string, %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :desc %>
-    <%= form.text_field :desc, id: :event_desc %>
+    <%= form.text_field :desc, id: :event_desc, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :string, %>
-    <%= form.text_field :string,, id: :event_string, %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :event_price %>
+    <%= form.text_field :price, id: :event_price, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :decimal, %>
-    <%= form.text_field :decimal,, id: :event_decimal, %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :free_seats %>
-    <%= form.text_field :free_seats, id: :event_free_seats %>
+    <%= form.text_field :free_seats, id: :event_free_seats, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :integer %>
-    <%= form.text_field :integer, id: :event_integer %>
+  <div class="form-group">
+    <%= form.label :poster %>
+    <%= form.file_field :poster, id: :event_poster, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-inverse btn-sm" %>
   </div>
 <% end %>

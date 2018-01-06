@@ -6,18 +6,8 @@
 </p>
 
 <p>
-  <strong>Datetime,:</strong>
-  <%= @event.datetime, %>
-</p>
-
-<p>
   <strong>Required age:</strong>
   <%= @event.required_age %>
-</p>
-
-<p>
-  <strong>Integer,:</strong>
-  <%= @event.integer, %>
 </p>
 
 <p>
@@ -26,18 +16,8 @@
 </p>
 
 <p>
-  <strong>String,:</strong>
-  <%= @event.string, %>
-</p>
-
-<p>
   <strong>Desc:</strong>
   <%= @event.desc %>
-</p>
-
-<p>
-  <strong>String,:</strong>
-  <%= @event.string, %>
 </p>
 
 <p>
@@ -46,18 +26,13 @@
 </p>
 
 <p>
-  <strong>Decimal,:</strong>
-  <%= @event.decimal, %>
-</p>
-
-<p>
   <strong>Free seats:</strong>
   <%= @event.free_seats %>
 </p>
 
 <p>
-  <strong>Integer:</strong>
-  <%= @event.integer %>
+  <strong>Poster:</strong>
+  <%= image_tag @event.poster.url %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |

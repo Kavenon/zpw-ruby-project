@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :tickets
-  root :to => "tickets#index"
+  root :to => "events#index"
 
   get    '/profile', to: 'users#profile'
   get    '/signup',  to: 'users#new'

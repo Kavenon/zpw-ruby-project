@@ -17,7 +17,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create event" do
     assert_difference('Event.count') do
-      post events_url, params: { event: { date: @event.date, datetime,: @event.datetime,, decimal,: @event.decimal,, desc: @event.desc, free_seats: @event.free_seats, integer,: @event.integer,, integer: @event.integer, name: @event.name, price: @event.price, required_age: @event.required_age, string,: @event.string,, string,: @event.string, } }
+      post events_url, params: { event: { date: @event.date, desc: @event.desc, free_seats: @event.free_seats, name: @event.name, poster: @event.poster, price: @event.price, required_age: @event.required_age } }
     end
 
     assert_redirected_to event_url(Event.last)
@@ -34,7 +34,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event" do
-    patch event_url(@event), params: { event: { date: @event.date, datetime,: @event.datetime,, decimal,: @event.decimal,, desc: @event.desc, free_seats: @event.free_seats, integer,: @event.integer,, integer: @event.integer, name: @event.name, price: @event.price, required_age: @event.required_age, string,: @event.string,, string,: @event.string, } }
+    patch event_url(@event), params: { event: { date: @event.date, desc: @event.desc, free_seats: @event.free_seats, name: @event.name, poster: @event.poster, price: @event.price, required_age: @event.required_age } }
     assert_redirected_to event_url(@event)
   end
 

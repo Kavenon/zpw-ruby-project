@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106110731) do
+ActiveRecord::Schema.define(version: 20180106223718) do
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "required_age"
+    t.string "name"
+    t.string "desc"
+    t.decimal "price"
+    t.integer "free_seats"
+    t.string "poster_file_name"
+    t.string "poster_content_type"
+    t.integer "poster_file_size"
+    t.datetime "poster_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.string "name"
