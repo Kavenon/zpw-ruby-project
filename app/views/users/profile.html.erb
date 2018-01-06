@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-6">
+    <section class="widget user-profile">
+      <div class="widget-body">
+        <div class="widget-top-overflow text-white">
+          <div class="height-250 overflow-hidden">
+            <%= image_tag "pic19.jpg", class: "img-fluid" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 text-xs-center">
+            <div class="post-user post-user-profile">
+                                    <span class="thumb-xlg">
+                                                  <%= image_tag "someone.png", class: "img-circle" %>
+                                    </span>
+              <h5 class="fw-normal"><%= @user.name %></h5>
+              <%= link_to edit_user_path(@user), class: "btn btn-danger btn-sm mt" do %>
+                <i class="fa fa-pencil ml-xs"></i>&nbsp;
+              <% end %>
+              <ul class="contacts">
+                <li><i class="fa fa-envelope fa-fw mr-xs"></i> <%= @user.email %></li>
+                <li><i class="fa fa-calendar fa-fw mr-xs"></i> <%= @user.birthday %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <% if is_admin? %>
+            <p class="text-xs-right mt-lg">
+              <a href="#" class="label label-danger ml-xs"> Admin</a>
+            </p>
+            <% end %>
+            <p class="lead mt-lg">
+              <span>Lorem ipsum dolor sit amet, consectetur</span>
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad enim inventore libero magnam maiores maxime perspiciatis provident. Assumenda est ex laudantium molestiae mollitia nisi numquam quia vel voluptas voluptatem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

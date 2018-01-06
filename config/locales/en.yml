@@ -30,10 +30,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  common:
+    back: "Back"
+  nav:
+    events: "Events"
+    login: "Login"
+    logout: "Logout"
   app: "ticketpro"
   user:
     new:
       title: "Create account"
+    edit:
+      title: "Edit account"
+      back: "Back"
   auth:
     login:
       title: "Login to ticketpro"

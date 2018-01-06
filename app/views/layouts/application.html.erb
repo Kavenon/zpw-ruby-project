@@ -9,6 +9,15 @@
   </head>
 
   <body>
-    <%= yield %>
+  <%= render 'layouts/toastr' %>
+  <%= render 'layouts/top-nav' %>
+
+  <div class="content-wrap">
+    <main id="content" class="content" role="main">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
+  </div>
   </body>
 </html>

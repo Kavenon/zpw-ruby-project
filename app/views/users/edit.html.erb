@@ -1,6 +1,8 @@
-<h1>Editing User</h1>
+<header>
+  <h3><%=t('user.edit.title') %></h3>
+</header>
+<div class="widget-body">
+  <%= render 'form', user: @user %>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to t('auth.edit.back'), profile_path, class: "btn btn-secondary btn-sm"%>
+</div>

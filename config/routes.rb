@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tickets
   root :to => "tickets#index"
 
+  get    '/profile', to: 'users#profile'
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'auth#new'
   post   '/login',   to: 'auth#create'
