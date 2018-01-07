@@ -1,4 +1,15 @@
 module TicketsHelper
+
+  def get_refund(days_left, price)
+    min = 0.1
+    max = 0.6
+    max_days = 30
+    elapsed_part = (days_left * (max-min) / max_days)
+    decrease_ratio = (max - elapsed_part)
+    costs = price * decrease_ratio
+    (price - costs)
+  end
+
   def remaining_count(already_ordered)
     5 - already_ordered
   end

@@ -1,0 +1,14 @@
+<tr class="<%= 'bg-danger-light' if ticket.want_delete %>">
+  <td><%= ticket.user.name %></td>
+  <td><%= ticket.created_at %></td>
+  <td><%= ticket.seat %></td>
+  <td><%= ticket.price %></td>
+  <td>
+    <% if is_admin? && ticket.want_delete %>
+      <%= link_to t('tickets.row.approve.delete'), ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% unless ticket.want_delete || (is_admin? && ticket.want_delete) %>
+      <%= link_to t('tickets.row.delete'), ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </td>
+</tr>

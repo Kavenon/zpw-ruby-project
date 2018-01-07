@@ -2,7 +2,9 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :destroy]
   before_action :check_if_logged, only: [:create, :destroy]
 
+  include EventsHelper
   include TicketsHelper
+  include UsersHelper
 
   # GET /tickets
   # GET /tickets.json
@@ -32,44 +34,46 @@ class TicketsController < ApplicationController
     total_price = count * event_price(@event)
     new_balance = @current_user.balance - total_price
 
-    if rem_count < count || count < -1
+    if buying_opened(@event)
+      flash[:danger] = t('tickets.new.invalid.toEarly')
+    elsif rem_count < count || count < -1 || count == 0
       flash[:danger] = t('tickets.new.invalid.count', remaining: rem_count)
+    elsif !@event.required_age.blank? && user_age(@current_user) < @event.required_age.to_i
+      flash[:danger] = t('tickets.new.invalid.requiredAge')
     elsif @event.free_seats < count
       flash[:danger] = t('tickets.new.invalid.freeSeats')
     elsif new_balance < 0
       flash[:danger] = t('tickets.new.invalid.balance')
+
     else
 
-      count.times do |i|
-        ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => get_free_seat(@event))
-        @current_user.tickets << ticket
-        @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
-      end
+      # count.times do |i|
+      #   ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => get_free_seat(@event))
+      #   @current_user.tickets << ticket
+      #   @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
+      # end
       flash[:success] = t('tickets.new.success')
 
     end
 
     redirect_to event_path(@event)
 
-    # respond_to do |format|
-    #   if @ticket.save
-    #     format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-    #     format.json { render :show, status: :created, location: @ticket }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @ticket.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
-    @ticket.destroy
-    respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if is_admin? && @ticket.want_delete
+      days_left = (@ticket.event.date.to_date - @ticket.updated_at.to_date).to_i
+      refund = get_refund(days_left, @ticket.price)
+      @ticket.user.update_attribute("balance", @ticket.user.balance + refund)
+      @ticket.destroy
+    elsif is_admin? || @ticket.user_id == @current_user.id
+      @ticket.update_attribute("want_delete", true)
     end
+
+    redirect_to event_path(@ticket.event)
   end
 
   private

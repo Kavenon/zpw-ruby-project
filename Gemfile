@@ -14,6 +14,7 @@ gem 'aws-sdk', '~> 2.3'
 gem 'toastr-rails'
 gem 'jquery-rails'
 gem 'validates_timeliness', '~> 4.0'
+gem 'date_diff'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

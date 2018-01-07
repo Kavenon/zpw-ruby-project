@@ -26,6 +26,12 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @ticket = Ticket.new
+
+    if is_admin?
+      @tickets = Ticket.all
+    else
+      @tickets = Ticket.where(:user_id => @current_user.id)
+    end
   end
 
   # GET /events/new

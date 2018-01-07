@@ -36,7 +36,13 @@ en:
         count: "You can order at most %{remaining} tickets"
         balance: "You don't have enough money"
         freeSeats: "We don't have more tickets to sell"
+        requiredAge: "You are too young to buy this ticket"
+        toEarly: "You can buy tickets 30 or less days before event"
       success: "You successfully purchased ticket(s)"
+    row:
+      delete: "Delete"
+      approve:
+        delete: "Approve delete"
   events:
     index:
       all: "Show all"
@@ -47,6 +53,13 @@ en:
       archived: "Archived"
     show:
       buy: "Buy tickets"
+      tickets:
+        title: "Tickets"
+        user: "User"
+        date: "Date"
+        price: "Price"
+        seat: "Seat"
+        empty: "0 purchased tickets"
   common:
     back: "Back"
   nav:

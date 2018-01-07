@@ -7,34 +7,74 @@
   <div class="col-lg-3">
     <%= render 'widget', event: @event %>
   </div>
-  <div class="col-lg-3">
-    <section class="widget">
-      <div class="widget-body">
-        <% if @event.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@event.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <div class="col-lg-9">
+    <% if buying_opened(@event) %>
+    <div class="row">
+      <div class="col-md-3">
 
-            <ul>
-              <% @event.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+        <section class="widget">
+          <div class="widget-body">
+            <% if @event.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@event.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                <ul>
+                  <% @event.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= form_with(model: [@event, @event.tickets.build], local: true) do |form| %>
+              <div class="form-group">
+                <label for="search-input">
+                  <%= t('events.show.buy')%>
+                </label>
+                <div class="input-group">
+                  <%= form.number_field :count, class: "form-control", :required => true %>
+                  <span class="input-group-btn">
+                    <%= form.submit "+", class: "btn btn-success" %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-        <%= form_with(model: [@event, @event.tickets.build], local: true) do |form| %>
-          <div class="form-group">
-            <label for="search-input">
-              <%= t('events.show.buy')%>
-            </label>
-            <div class="input-group">
-              <%= form.number_field :count, class: "form-control" %>
-              <span class="input-group-btn">
-            <%= form.submit "+", class: "btn btn-success" %>
-            </span>
-            </div>
-          </div>
-        <% end %>
+        </section>
       </div>
-    </section>
+    </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= t('events.show.tickets.title')%></h1>
+        <section class="widget">
+          <div class="widget-body">
+            <% if @tickets.empty? %>
+              <div class="alert alert-info">
+                <%= t('events.show.tickets.empty') %>
+              </div>
+            <% else %>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th><%= t('events.show.tickets.user')%></th>
+                <th><%= t('events.show.tickets.date')%></th>
+                <th><%= t('events.show.tickets.seat')%></th>
+                <th><%= t('events.show.tickets.price')%></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <% @tickets.each do |ticket| %>
+                  <%= render 'tickets/row', ticket: ticket %>
+                <% end %>
+              </tbody>
+            </table>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
 </div>
+
+
