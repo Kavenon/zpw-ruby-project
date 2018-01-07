@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post   '/events/filter',   to: 'events#filter'
   post   '/users/balance',   to: 'users#balance'
   delete '/logout',  to: 'auth#destroy'
+  post '/tickets/redir',  to: 'tickets#redir'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

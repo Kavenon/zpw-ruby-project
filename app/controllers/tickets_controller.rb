@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :destroy]
   before_action :check_if_logged, only: [:create, :destroy]
+  before_action :check_if_admin, only: [:index, :show, :redir]
 
   include EventsHelper
   include TicketsHelper
@@ -12,6 +13,10 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
+  def redir
+    @ticket = Ticket.find(params[:ticket_id])
+    redirect_to ticket_path(@ticket)
+  end
   # GET /tickets/1
   # GET /tickets/1.json
   def show

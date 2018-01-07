@@ -22,6 +22,11 @@
               <i class="fa fa-plus"></i> &nbsp; <%= t('nav.events.new') %>
             <% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to tickets_path, class: "nav-link" do  %>
+              <i class="fa fa-ticket"></i> &nbsp; <%= t('nav.tickets') %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-xs-right">

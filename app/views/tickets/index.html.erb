@@ -2,34 +2,15 @@
 
 <h1>Tickets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Price</th>
-      <th>Seat</th>
-      <th>Want delete</th>
-      <th>User</th>
-      <th>Event</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= ticket.price %></td>
-        <td><%= ticket.seat %></td>
-        <td><%= ticket.want_delete %></td>
-        <td><%= ticket.user %></td>
-        <td><%= ticket.event %></td>
-        <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Ticket', new_ticket_path %>
+<%= form_tag tickets_redir_path, method: "post" do %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group-first-child display-flex mb-lg">
+        <%= select_tag(:ticket_id, options_from_collection_for_select(Ticket.all, :id, :id)) %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= submit_tag t('tickets.show'), name: nil, class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
