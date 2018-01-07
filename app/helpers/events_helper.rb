@@ -5,7 +5,15 @@ module EventsHelper
   end
 
   def buying_opened(event)
-    (event.date.to_date - Date.today).to_i <= 30
+    days_to_event = (event.date.to_date - Date.today).to_i
+    days_to_event.to_i <= 30 && days_to_event >= 0
+  end
+
+  def has_tickets?(event)
+    unless logged_in?
+      return false
+    end
+    event.tickets.where(:user_id => @current_user.id).count > 0
   end
 
   def is_archived_event?(event)

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     if is_admin?
       @events = Event.all
     else
-      @events = Event.all.select{|event| !is_archived_event?(event)}
+      @events = Event.all.select{|event| !is_archived_event?(event) || has_tickets?(event)}
     end
   end
 

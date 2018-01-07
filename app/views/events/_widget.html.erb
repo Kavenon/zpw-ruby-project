@@ -30,7 +30,7 @@
             <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
           </div>
 
-          <% if logged_in? && (current_page?(:controller => "events", :action => "index") || current_page?(root_url)) %>
+          <% if logged_in? %>
             <%= link_to 'Show', event, class: "btn btn-success" %>
           <% end %>
           <% if is_admin? %>

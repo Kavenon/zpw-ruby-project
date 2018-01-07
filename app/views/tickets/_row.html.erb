@@ -4,10 +4,10 @@
   <td><%= ticket.seat %></td>
   <td><%= ticket.price %></td>
   <td>
-    <% if is_admin? && ticket.want_delete %>
+    <% if is_admin? && ticket.want_delete && buying_opened(ticket.event) %>
       <%= link_to t('tickets.row.approve.delete'), ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-    <% unless ticket.want_delete || (is_admin? && ticket.want_delete) %>
+    <% if (!ticket.want_delete || (is_admin? && !ticket.want_delete)) && buying_opened(ticket.event) %>
       <%= link_to t('tickets.row.delete'), ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   </td>
