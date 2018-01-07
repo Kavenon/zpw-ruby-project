@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def string_to_date(strParams)
+    Date.civil(strParams["date(1i)"].to_i,strParams["date(2i)"].to_i,strParams["date(3i)"].to_i)
+  end
+
   def flash_messages
     flash_messages = []
 

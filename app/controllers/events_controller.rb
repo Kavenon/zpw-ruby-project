@@ -16,8 +16,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def filter
-    from = Date.civil(params[:from]["date(1i)"].to_i,params[:from]["date(2i)"].to_i,params[:from]["date(3i)"].to_i)
-    to = Date.civil(params[:to]["date(1i)"].to_i,params[:to]["date(2i)"].to_i,params[:to]["date(3i)"].to_i)
+    from = string_to_date(params[:from])
+    to = string_to_date(params[:to])
     @events = Event.where(:date => from.beginning_of_day..to.end_of_day)
     render 'index'
   end
