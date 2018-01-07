@@ -17,7 +17,7 @@ module EventsHelper
   end
 
   def is_archived_event?(event)
-    event.date < Date.today
+    event.date < Time.now.to_datetime
   end
 
   def event_price(event)

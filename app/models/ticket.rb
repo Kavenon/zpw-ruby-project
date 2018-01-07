@@ -4,7 +4,7 @@ class Ticket < ApplicationRecord
 
   validates :user_id, presence: true
   validates :event_id, presence: true
-  validates :seat, presence: true
-  validates :price, presence: true
+  validates :seat, presence: true,  numericality: { only_integer: true }
+  validates :price, presence: true,  numericality: true
 
 end
