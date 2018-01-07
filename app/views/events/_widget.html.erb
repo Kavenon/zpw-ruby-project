@@ -20,12 +20,19 @@
             +<%= event.required_age %>
           </span>
           <% end %>
+          <% if is_archived_event?(event) %>
+          <span class="label label-success">
+            <%= t('events.widget.archived') %>
+          </span>
+          <% end %>
           <div class="mt-lg mb-lg">
             <i class="fa fa-users fa-fw mr-xs"></i> <%= get_free_tickets(event) %> / <%= event.free_seats %> <br />
             <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
           </div>
 
-          <%= link_to 'Show', event, class: "btn btn-success" %>
+          <% if logged_in? %>
+            <%= link_to 'Show', event, class: "btn btn-success" %>
+          <% end %>
           <% if is_admin? %>
             <%= link_to 'Edit', edit_event_path(event), class: "btn btn-warning" %>
             <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>

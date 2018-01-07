@@ -36,6 +36,8 @@ en:
       empty: "There are no events to display"
     new:
       title: "New event"
+    widget:
+      archived: "Archived"
   common:
     back: "Back"
   nav:

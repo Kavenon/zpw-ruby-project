@@ -4,4 +4,8 @@ module EventsHelper
     10
   end
 
+  def is_archived_event?(event)
+    event.date < Date.today
+  end
+
 end

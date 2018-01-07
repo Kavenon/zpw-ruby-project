@@ -1,11 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :check_if_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_if_logged, only: [:show]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if is_admin?
+      @events = Event.all
+    else
+      @events = Event.all.select{|event| !is_archived_event?(event)}
+    end
   end
 
   # POST /events
