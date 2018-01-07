@@ -41,13 +41,11 @@ class TicketsController < ApplicationController
     else
 
       count.times do |i|
-        ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => 1)
+        ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => get_free_seat(@event))
         @current_user.tickets << ticket
         @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
-
       end
       flash[:success] = t('tickets.new.success')
-
 
     end
 
