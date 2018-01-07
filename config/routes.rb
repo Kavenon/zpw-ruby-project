@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :tickets
+  end
+
   get 'auth/new'
 
   resources :users
-  resources :tickets
   root :to => "events#index"
 
   get    '/profile', to: 'users#profile'

@@ -8,4 +8,12 @@ module EventsHelper
     event.date < Date.today
   end
 
+  def event_price(event)
+    if event.date.today?
+      event.price * 1.2
+    else
+      event.price
+    end
+  end
+
 end

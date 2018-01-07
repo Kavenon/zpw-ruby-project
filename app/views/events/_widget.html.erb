@@ -13,7 +13,7 @@
             <%= event.desc %>
           </p>
           <span class="label label-danger">
-            <%= event.price %>zł
+            <%= event_price(event) %>zł
           </span>
           <% if event.required_age %>
           <span class="label label-warning">
@@ -30,7 +30,7 @@
             <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
           </div>
 
-          <% if logged_in? %>
+          <% if logged_in? && (current_page?(:controller => "events", :action => "index") || current_page?(root_url)) %>
             <%= link_to 'Show', event, class: "btn btn-success" %>
           <% end %>
           <% if is_admin? %>

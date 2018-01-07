@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyText
   price: 9.99
-  email_address: MyString
-  seat_id_seq: MyString
+  seat: 1
+  want_delete: false
+  user: one
+  event: one
 
 two:
-  name: MyString
-  address: MyText
   price: 9.99
-  email_address: MyString
-  seat_id_seq: MyString
+  seat: 1
+  want_delete: false
+  user: two
+  event: two

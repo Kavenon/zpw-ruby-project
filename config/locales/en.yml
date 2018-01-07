@@ -30,6 +30,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  tickets:
+    new:
+      invalid:
+        count: "You can order at most %{remaining} tickets"
+        balance: "You don't have enough money"
+        freeSeats: "We don't have more tickets to sell"
+      success: "You successfully purchased ticket(s)"
   events:
     index:
       all: "Show all"
@@ -38,6 +45,8 @@ en:
       title: "New event"
     widget:
       archived: "Archived"
+    show:
+      buy: "Buy tickets"
   common:
     back: "Back"
   nav:

@@ -1,5 +1,8 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :destroy]
+  before_action :check_if_logged, only: [:create, :destroy]
+
+  include TicketsHelper
 
   # GET /tickets
   # GET /tickets.json
@@ -17,38 +20,48 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
-  # GET /tickets/1/edit
-  def edit
-  end
-
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @event = Event.find(params[:event_id])
 
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    count = params[:ticket][:count].to_i
 
-  # PATCH/PUT /tickets/1
-  # PATCH/PUT /tickets/1.json
-  def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+    already_ordered_by_user = Ticket.where(:user_id => @current_user.id, :event_id => @event.id).count
+    rem_count = remaining_count(already_ordered_by_user)
+    total_price = count * event_price(@event)
+    new_balance = @current_user.balance - total_price
+
+    if rem_count < count || count < -1
+      flash[:danger] = t('tickets.new.invalid.count', remaining: rem_count)
+    elsif @event.free_seats < count
+      flash[:danger] = t('tickets.new.invalid.freeSeats')
+    elsif new_balance < 0
+      flash[:danger] = t('tickets.new.invalid.balance')
+    else
+
+      count.times do |i|
+        ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => 1)
+        @current_user.tickets << ticket
+        @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
+
       end
+      flash[:success] = t('tickets.new.success')
+
+
     end
+
+    redirect_to event_path(@event)
+
+    # respond_to do |format|
+    #   if @ticket.save
+    #     format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+    #     format.json { render :show, status: :created, location: @ticket }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @ticket.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /tickets/1
@@ -69,6 +82,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:name, :address, :price, :email_address, :seat_id_seq)
+      params.permit(:count)
     end
 end

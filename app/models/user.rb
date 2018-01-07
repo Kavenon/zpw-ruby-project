@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_secure_password
   validates_date :birthday, on_or_before: lambda { Date.current }
   validates :password, presence: true, length: { minimum: 6 }, :if => :password
+
+  has_many :tickets, dependent: :destroy
+
 end

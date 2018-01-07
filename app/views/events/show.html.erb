@@ -7,4 +7,34 @@
   <div class="col-lg-3">
     <%= render 'widget', event: @event %>
   </div>
+  <div class="col-lg-3">
+    <section class="widget">
+      <div class="widget-body">
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@event.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+              <% @event.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_with(model: [@event, @event.tickets.build], local: true) do |form| %>
+          <div class="form-group">
+            <label for="search-input">
+              <%= t('events.show.buy')%>
+            </label>
+            <div class="input-group">
+              <%= form.number_field :count, class: "form-control" %>
+              <span class="input-group-btn">
+            <%= form.submit "+", class: "btn btn-success" %>
+            </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
 </div>

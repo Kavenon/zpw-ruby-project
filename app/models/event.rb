@@ -9,4 +9,6 @@ class Event < ApplicationRecord
 
   validates_date :date, on_or_after: lambda { Date.current }
 
+  has_many :tickets, dependent: :destroy
+
 end
