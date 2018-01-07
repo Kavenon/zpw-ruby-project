@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include AuthHelper
-  include Events
+  include EventsHelper
 
   def check_if_logged
     unless logged_in?

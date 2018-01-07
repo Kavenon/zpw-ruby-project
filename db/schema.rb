@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180107104331) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
     t.datetime "date"
     t.integer "required_age"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20180107104331) do
     t.decimal "price"
     t.integer "seat"
     t.boolean "want_delete"
-    t.integer "user_id"
-    t.integer "event_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_tickets_on_event_id"
@@ -50,4 +53,6 @@ ActiveRecord::Schema.define(version: 20180107104331) do
     t.decimal "balance", default: "1000.0"
   end
 
+  add_foreign_key "tickets", "events"
+  add_foreign_key "tickets", "users"
 end
