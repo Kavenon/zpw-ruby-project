@@ -54,6 +54,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def balance
+    @user = current_user
+    respond_to do |format|
+      if @user.update_attribute(:balance, @user.balance + 1000)
+        format.html { redirect_to profile_url, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { redirect_to profile_url, notice: 'User was not successfully updated.' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

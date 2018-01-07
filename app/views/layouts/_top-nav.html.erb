@@ -12,16 +12,18 @@
         <i class="fa fa-circle text-warning mr-n-sm"></i>
         <i class="fa fa-circle text-gray"></i>
       </a>
-      <!--<ul class="nav navbar-nav">-->
-        <!--<li class="nav-item">-->
-          <!--<a class="nav-link">-->
-            <!--<%= t('nav.events') %>-->
-          <!--</a>-->
-        <!--</li>-->
-      <!--</ul>-->
     </div>
 
     <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-xs-left ml-lg">
+        <% if is_admin? %>
+          <li class="nav-item">
+            <%= link_to new_event_path, class: "nav-link" do  %>
+              <i class="fa fa-plus"></i> &nbsp; <%= t('nav.events.new') %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
       <ul class="nav navbar-nav pull-xs-right">
         <% if logged_in? %>
         <li class="nav-item">
@@ -32,6 +34,11 @@
             &nbsp;
             <%= @current_user.name %>
         </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fa fa-money"></i> &nbsp; <%= @current_user.balance %>
+          </a>
         </li>
         <li class="nav-item">
           <%= link_to logout_path, class: "nav-link", method: :delete do  %>

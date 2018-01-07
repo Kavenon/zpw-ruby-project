@@ -8,5 +8,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_if_admin
+    unless logged_in?
+      redirect_to login_url
+    end
+  end
+
 
 end

@@ -1,0 +1,37 @@
+<section class="widget user-profile">
+  <div class="widget-body">
+    <div class="widget-top-overflow text-white">
+      <div class="height-250 overflow-hidden">
+        <%= image_tag event.poster.url, class: "img-fluid" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-xs-center">
+        <div class="post-user mt-lg">
+          <h5 class="fw-normal"><%= event.name %></h5>
+          <p>
+            <%= event.desc %>
+          </p>
+          <span class="label label-danger">
+            <%= event.price %>zł
+          </span>
+          <% if event.required_age %>
+          <span class="label label-warning">
+            +<%= event.required_age %>
+          </span>
+          <% end %>
+          <div class="mt-lg mb-lg">
+            <i class="fa fa-users fa-fw mr-xs"></i> <%= get_free_tickets(event) %> / <%= event.free_seats %> <br />
+            <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
+          </div>
+
+          <%= link_to 'Show', event, class: "btn btn-success" %>
+          <% if is_admin? %>
+            <%= link_to 'Edit', edit_event_path(event), class: "btn btn-warning" %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

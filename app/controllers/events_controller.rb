@@ -1,10 +1,20 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :check_if_admin, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+  end
+
+  # POST /events
+  # POST /events.json
+  def filter
+    from = Date.civil(params[:from]["date(1i)"].to_i,params[:from]["date(2i)"].to_i,params[:from]["date(3i)"].to_i)
+    to = Date.civil(params[:to]["date(1i)"].to_i,params[:to]["date(2i)"].to_i,params[:to]["date(3i)"].to_i)
+    @events = Event.where(:date => from.beginning_of_day..to.end_of_day)
+    render 'index'
   end
 
   # GET /events/1

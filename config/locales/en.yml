@@ -31,12 +31,16 @@
 
 en:
   events:
+    index:
+      all: "Show all"
+      empty: "There are no events to display"
     new:
       title: "New event"
   common:
     back: "Back"
   nav:
-    events: "Events"
+    events:
+      new: "Add event"
     login: "Login"
     logout: "Logout"
   app: "ticketpro"

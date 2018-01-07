@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106223718) do
+ActiveRecord::Schema.define(version: 20180107095127) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "date"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20180106223718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.decimal "balance", default: "1000.0"
   end
 
 end

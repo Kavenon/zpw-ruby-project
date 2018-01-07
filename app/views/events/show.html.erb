@@ -1,39 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<p>
-  <strong>Required age:</strong>
-  <%= @event.required_age %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @event.desc %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @event.price %>
-</p>
-
-<p>
-  <strong>Free seats:</strong>
-  <%= @event.free_seats %>
-</p>
-
-<p>
-  <strong>Poster:</strong>
-  <%= image_tag @event.poster.url %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to 'Back', events_path, class: "btn btn-inverse mb-md" %>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col-lg-3">
+    <%= render 'widget', event: @event %>
+  </div>
+</div>

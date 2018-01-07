@@ -1,36 +1,41 @@
-
-<div class="row row-eq-height">
-  <div class="col-lg-3">
-    <% @events.each do |event| %>
-    <section class="widget user-profile">
-      <div class="widget-body">
-        <div class="widget-top-overflow text-white">
-          <div class="height-250 overflow-hidden">
-            <%= image_tag event.poster.url, class: "img-fluid" %>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag events_filter_path, method: "post" do %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group-first-child display-flex mb-lg">
+            <%= date_select "from", "date", class: "form-control" %>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-xs-center">
-            <div class="post-user mt-lg">
-              <h5 class="fw-normal"><%= event.name %></h5>
-              <p>
-                <%= event.desc %>
-              </p>
-              <span class="label label-danger">
-                <%= event.price %>zł
-              </span>
-              <div class="mt-lg mb-lg">
-                <i class="fa fa-calendar fa-fw mr-xs"></i> <%= event.date %>
-              </div>
-
-              <%= link_to 'Show', event, class: "btn btn-success" %>
-              <%= link_to 'Edit', edit_event_path(event), class: "btn btn-warning" %>
-              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
-            </div>
+        <div class="col-md-1 text-lg-center">
+          <span class="form-control-static">
+            -
+          </span>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group-first-child display-flex mb-lg">
+            <%= date_select "to", "date", class: "form-control" %>
           </div>
+        </div>
+        <div class="col-md-3">
+          <%= submit_tag "Filter", name: nil, class: "btn btn-primary" %>
+          <% if request.post? %>
+            <%= link_to t('events.index.all'), events_path, class: "btn btn-default"  %>
+        <% end %>
         </div>
       </div>
-    </section>
+    <% end %>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <div class="col-lg-3">
+    <% if @events.empty? %>
+      <div class="alert alert-info">
+        <%= t('events.index.empty') %>
+      </div>
+    <% end %>
+    <% @events.each do |event| %>
+      <%= render 'widget', event: event %>
     <% end %>
   </div>
 </div>

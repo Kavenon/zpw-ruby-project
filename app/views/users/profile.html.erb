@@ -10,12 +10,16 @@
         <div class="row">
           <div class="col-md-5 text-xs-center">
             <div class="post-user post-user-profile">
-                                    <span class="thumb-xlg">
-                                                  <%= image_tag "someone.png", class: "img-circle" %>
-                                    </span>
+              <span class="thumb-xlg">
+                  <%= image_tag "someone.png", class: "img-circle" %>
+              </span>
               <h5 class="fw-normal"><%= @user.name %></h5>
               <%= link_to edit_user_path(@user), class: "btn btn-danger btn-sm mt" do %>
                 <i class="fa fa-pencil ml-xs"></i>&nbsp;
+              <% end %>
+              <%= link_to users_balance_path, class: "btn btn-success btn-sm mt", method: "post" do %>
+                <i class="fa fa-plus ml-xs"></i>&nbsp;
+                <i class="fa fa-money ml-xs"></i>&nbsp;
               <% end %>
               <ul class="contacts">
                 <li><i class="fa fa-envelope fa-fw mr-xs"></i> <%= @user.email %></li>
