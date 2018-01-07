@@ -1,5 +1,5 @@
 <%= form_with(model: ticket, local: true) do |form| %>
-  <% render 'shared/errors', obj: ticket %>
+  <%= render 'shared/errors', obj: ticket %>
 
   <div class="field">
     <%= form.label :price %>

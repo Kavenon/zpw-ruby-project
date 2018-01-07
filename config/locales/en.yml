@@ -30,9 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  app:
+  common:
     errors: "There were some errors"
   tickets:
+    index:
+      empty: "0 purchased tickets"
     show: "Show"
     new:
       invalid:

@@ -14,7 +14,7 @@
 
         <section class="widget">
           <div class="widget-body">
-            <% render 'shared/errors', obj: @event %>
+            <%= render 'shared/errors', obj: @event %>
 
             <%= form_with(model: [@event, @event.tickets.build], local: true) do |form| %>
               <div class="form-group">

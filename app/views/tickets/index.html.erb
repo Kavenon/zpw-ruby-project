@@ -1,16 +1,20 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Tickets</h1>
 
-<%= form_tag tickets_redir_path, method: "post" do %>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group-first-child display-flex mb-lg">
-        <%= select_tag(:ticket_id, options_from_collection_for_select(Ticket.all, :id, :id)) %>
+<% if @tickets.any? %>
+  <%= form_tag tickets_redir_path, method: "post" do %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group-first-child display-flex mb-lg">
+          <%= select_tag(:ticket_id, options_from_collection_for_select(@tickets, :id, :id)) %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <%= submit_tag t('tickets.show'), name: nil, class: "btn btn-primary" %>
       </div>
     </div>
-    <div class="col-md-3">
-      <%= submit_tag t('tickets.show'), name: nil, class: "btn btn-primary" %>
-    </div>
+  <% end %>
+<% else %>
+  <div class="alert alert-info">
+    <%= t('tickets.index.empty') %>
   </div>
 <% end %>

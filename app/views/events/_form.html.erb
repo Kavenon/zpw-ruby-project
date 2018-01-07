@@ -1,5 +1,5 @@
 <%= form_with(model: event, local: true, html: { multipart: true },  class: "form-horizontal") do |form| %>
-  <% render 'shared/errors', obj: event %>
+  <%= render 'shared/errors', obj: event %>
 
   <div class="form-group-first-child display-flex mb-lg">
     <%= form.datetime_select :date, id: :event_date, class: "form-control" %>

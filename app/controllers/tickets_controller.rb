@@ -38,24 +38,24 @@ class TicketsController < ApplicationController
     rem_count = remaining_count(already_ordered_by_user)
     total_price = count * event_price(@event)
 
-    if buying_opened(@event)
+    if !buying_opened(@event)
       flash[:danger] = t('tickets.new.invalid.toEarly')
     elsif invalid_count(rem_count, count)
       flash[:danger] = t('tickets.new.invalid.count', remaining: rem_count)
     elsif invalid_age(@event, @current_user)
       flash[:danger] = t('tickets.new.invalid.requiredAge')
-    elsif invalid_free_seat(@event)
+    elsif invalid_free_seat(@event, count)
       flash[:danger] = t('tickets.new.invalid.freeSeats')
     elsif invalid_balance(@current_user.balance - total_price)
       flash[:danger] = t('tickets.new.invalid.balance')
     else
       flash[:success] = t('tickets.new.success')
-    end
 
-    count.times do |i|
-      ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => get_free_seat(@event))
-      @current_user.tickets << ticket
-      @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
+      count.times do |i|
+        ticket = @event.tickets.create(:price => event_price(@event), :want_delete => false, :seat => get_free_seat(@event))
+        @current_user.tickets << ticket
+        @current_user.update_attribute("balance", @current_user.balance - event_price(@event))
+      end
     end
 
     redirect_to event_path(@event)
