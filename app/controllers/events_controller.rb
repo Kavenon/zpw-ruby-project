@@ -3,9 +3,12 @@ class EventsController < ApplicationController
   before_action :check_if_admin, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_if_logged, only: [:show]
 
+  include ApplicationHelper
   # GET /events
   # GET /events.json
   def index
+    @from = Date.today
+    @to = Date.today
     if is_admin?
       @events = Event.all
     else
@@ -16,9 +19,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def filter
-    from = string_to_date(params[:from])
-    to = string_to_date(params[:to])
-    @events = Event.where(:date => from.beginning_of_day..to.end_of_day)
+    @from = string_to_date(params[:from])
+    @to = string_to_date(params[:to])
+    @events = Event.where(:date => @from.beginning_of_day..@to.end_of_day)
     render 'index'
   end
 

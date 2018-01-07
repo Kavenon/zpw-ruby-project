@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group-first-child display-flex mb-lg">
-            <%= date_select "from", "date", class: "form-control" %>
+            <%= date_select "from", "date", class: "form-control", selected: @from %>
           </div>
         </div>
         <div class="col-md-1 text-lg-center">
@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group-first-child display-flex mb-lg">
-            <%= date_select "to", "date", class: "form-control" %>
+            <%= date_select "to", "date", class: "form-control", selected: @to %>
           </div>
         </div>
         <div class="col-md-3">
