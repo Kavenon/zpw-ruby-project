@@ -21,7 +21,13 @@ class EventsController < ApplicationController
   def filter
     @from = string_to_date(params[:from])
     @to = string_to_date(params[:to])
-    @events = Event.where(:date => @from.beginning_of_day..@to.end_of_day)
+    if is_admin?
+      @events = Event.where(:date => @from.beginning_of_day..@to.end_of_day)
+    else
+      @events = Event.where(:date => @from.beginning_of_day..@to.end_of_day)
+                    .select{|event| !is_archived_event?(event) || has_tickets?(event)}
+    end
+
     render 'index'
   end
 
