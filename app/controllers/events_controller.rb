@@ -7,8 +7,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @from = Date.today
-    @to = Date.today
+    @from = Date.today - 30.days
+    @to = Date.today + 30.days
     if is_admin?
       @events = Event.all
     else
