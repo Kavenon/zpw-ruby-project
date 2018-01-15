@@ -28,15 +28,17 @@
   </div>
 </div>
 <div class="row row-eq-height">
-  <div class="col-lg-3">
-    <% if @events.empty? %>
+  <% if @events.empty? %>
+    <div class="col-lg-3">
       <div class="alert alert-info">
         <%= t('events.index.empty') %>
       </div>
-    <% end %>
-    <% @events.each do |event| %>
+    </div>
+  <% end %>
+  <% @events.each do |event| %>
+    <div class="col-lg-3">
       <%= render 'widget', event: event %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
