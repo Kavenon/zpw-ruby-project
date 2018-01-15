@@ -42,7 +42,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link">
-            <i class="fa fa-money"></i> &nbsp; <%= @current_user.balance %>
+            <i class="fa fa-money"></i> &nbsp; <%= number_with_precision(@current_user.balance, :precission => 2) %>
           </a>
         </li>
         <li class="nav-item">
